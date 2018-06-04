@@ -149,12 +149,13 @@ vif(model)
 
 condition_number=kappa(X)
 
-install.packages("ridge")
-library(ridge)
-model_ridge=linearRidge(gdpchange~gini2007+gsavs2007+unemp2007+fer2007+dev)
+install.packages("lmridge")
+library(lmridge)
+model_ridge=lmridge(formula=gdpchange~gini2007+gsavs2007+unemp2007+fer2007+dev,data=as.data.frame.numeric(X))
 
 
 #for tidy tables for all models
+library(broom)
 tidy1=tidy(model1)
 tidy2=tidy(model2)
 tidy3=tidy(model3)
@@ -171,5 +172,46 @@ plot(density(resid(model4)))
 plot(density(resid(model5)))
 plot(density(resid(model6)))
 
+plot(density(residuals.lmridge(model_ridge)))
 
- 
+#for vif calculation of model_ridge
+vif.lmridge(model_ridge)
+
+#for values of k by all authors
+kest.lmridge(model_ridge)
+
+#for model selection plot
+info.plot(model_ridge)
+
+#for Ridge-trace plot
+plot.lmridge(model_ridge)
+
+#for model selection criteria
+infocr.lmridge(model_ridge)
+
+#Bias Variance and MSE Trade-off Plot
+bias.plot(model_ridge)
+
+#Ordinary Ridge Regression Statistics 1
+rstats1.lmridge(model_ridge)
+
+#Ridge Regression: Hat Matrix
+hatr.lmridge(model_ridge)
+
+#Variance-Covariance Matrix for Fitted Ridge Model
+vcov.lmridge(model_ridge)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
