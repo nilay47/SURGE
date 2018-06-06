@@ -1,0 +1,128 @@
+#for GINI
+g1=ginif[3:267,52:57]
+g=ginif[3:267,42:56]
+g2=ginif[3:267,1]
+giniold=cbind(g2,g1)
+gininew=cbind(g2,g)
+
+#for GDP
+G1=gdpf[3:267,52:57]
+G=gdpf[3:267,42:61]
+G2=gdpf[3:267,1]
+gdpold=cbind(G2,G1)
+gdpnew=cbind(G2,G)
+
+#for gdpchange
+#for(i in 1:29){
+#  gdpchange[,i]=(as.numeric(gdpnew[,i+5])-as.numeric(gdpnew[,i]))/as.numeric[,i]*100
+}
+
+#for UNEMPLOYMENT
+u1=unempf[3:267,52:57] 
+u=unempf[3:267,42:56]
+u2=unempf[3:267,1]
+unempld=cbind(u2,u1)
+unempnew=cbind(u2,u)
+
+#for GROSS SAVING RATE
+gs1=gsavsf[3:267,52:57] 
+gs=gsavsf[3:267,42:56]
+gs2=gsavsf[3:267,1]
+gsavsold=cbind(gs2,gs1)
+gsavsnew=cbind(gs2,gs)
+
+#for FERTILITY
+f1=ferf[3:267,52:57] 
+f2=ferf[3:267,1]
+f=ferf[3:267,42:56]
+ferold=cbind(f2,f1)
+fernew=cbind(f2,f)
+
+#for removing incomplete cases
+MATRIX=cbind(gdpnew,gininew,gsavsnew,unempnew,fernew)
+info=MATRIX[complete.cases(MATRIX), ]
+
+#for separate variables
+gdp=data.matrix(info[2:8,2:21])
+gini=data.matrix(info[2:8,23:37])
+gsavs=data.matrix(info[2:8,39:53])
+unemp=data.matrix(info[2:8,55:69])
+fer=data.matrix(info[2:8,71:85])
+
+#for gdpchange
+gdpchange=gdp[,1:15]
+for(i in 1:15){
+  print(i)
+  gdpchange[,i]=(gdp[,i+5]-gdp[,i])/gdp[,i]*100
+}
+
+gdpchange=t(gdpchange)
+unemp=t(unemp)
+fer=t(fer)
+gsavs=t(gsavs)
+gini=t(gini)
+
+for(i in 1:7){
+  model=lm(gdpchange[,i]~unemp[,i]+gsavs[,i]+gini[,i]+fer[,i])
+  print(coef(model))
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+gdp=as.numeric(gdp[,1])
+gdp=as.numeric(gdp[,6])
+gdpchange=(gdp2012-gdp2007)/gdp2007*100
+
+#for model1(ONLY GINI2007)
+model1=lm(gdpchange~gini2007)
+summary1=summary(model1)
+print(model1)
+
+#for model2(ONLY GINI2007, GSAVS2007)
+model2=lm(gdpchange~gini2007+gsavs2007)
+summary2=summary(model2)
+print(model2)
+
+#for model3(ONLY GINI2007, GSAVS2007, UNEMP2007)
+model3=lm(gdpchange~gini2007+gsavs2007+unemp2007)
+summary3=summary(model3)
+print(model3)
+
+#for model4(ONLY GINI2007, GSAVS2007, UNEMP2007, FER2007)
+model4=lm(gdpchange~gini2007+gsavs2007+unemp2007+fer2007)
+summary4=summary(model4)
+print(model4)
+
+#for model5(ONLY GINI2007, GSAVS2007, FER2007)
+model5=lm(gdpchange~gini2007+gsavs2007+fer2007)
+summary5=summary(model5)
+print(model5)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
