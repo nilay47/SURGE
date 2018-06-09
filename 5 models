@@ -9,7 +9,7 @@ g=gdpgrowth[3:267,42:61]
 gdp=cbind(g1,g)
 
 #for UNEMPLOYMENT
-u1=unempf[3:267,52:57] 
+u2=unempf[3:267,1] 
 u=unempf[3:267,42:61]
 unempnew=cbind(u2,u)
 
