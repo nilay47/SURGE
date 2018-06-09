@@ -1,0 +1,46 @@
+#for GINI
+g=ginif[3:267,42:61]
+g2=ginif[3:267,1]
+gininew=cbind(g2,g)
+
+#for gdpgrowth
+g1=gdpgrowth[3:267,1]
+g=gdpgrowth[3:267,42:61]
+gdp=cbind(g1,g)
+
+#for UNEMPLOYMENT
+u1=unempf[3:267,52:57] 
+u=unempf[3:267,42:61]
+unempnew=cbind(u2,u)
+
+#for GROSS SAVING RATE
+gs=gsavsf[3:267,42:61]
+gs2=gsavsf[3:267,1]
+gsavsnew=cbind(gs2,gs)
+
+#for FERTILITY
+f=ferf[3:267,42:61] 
+f2=ferf[3:267,1]
+fernew=cbind(f2,f)
+
+#for removing incomplete cases
+MATRIX=cbind(gdp,gininew,gsavsnew,unempnew,fernew)
+info=MATRIX[complete.cases(MATRIX), ]
+
+#for separate variables
+gdpchange=data.matrix(info[2:6,2:21])
+gini=data.matrix(info[2:6,23:42])
+gsavs=data.matrix(info[2:6,44:63])
+unemp=data.matrix(info[2:6,65:84])
+fer=data.matrix(info[2:6,86:105])
+
+gdpchange=t(gdpchange)
+unemp=t(unemp)
+fer=t(fer)
+gsavs=t(gsavs)
+gini=t(gini)
+
+for(i in 1:5){
+  model=lm(gdpchange[,i]~unemp[,i]+gsavs[,i]+gini[,i]+fer[,i])
+  print(coef(model))
+}
