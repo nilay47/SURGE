@@ -45,32 +45,17 @@ for(i in 1:11){
   print(coef(model))
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+a=c(12,27,50,61,84,99,124,152,187,188,197)
+for(i in a){
+  if(as.numeric(gdpold[i,2])<1036){
+    print("low income")
+  }
+  else if(as.numeric(gdpold[i,2])<12615&&as.numeric(gdpold[i,2])>1036){
+    print("low middle class")
+  }
+  else{
+    print("high income class")
+  }
+}
+install.packages("car")
+library(car)
