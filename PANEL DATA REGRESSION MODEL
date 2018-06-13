@@ -106,20 +106,23 @@ summary(X)
 
 pdata=pdata.frame(mydata,index=c("idx","years"))
 
+year_idx=as.factor(years)
+id_idx=as.factor(id)
+
 #POOLED OLS ESTIMATOR
-pooling=plm(Y~X,data=pdata,model="pooling")
+pooling=plm(gdpchange~unemp+gsavs+gini+year_idx+id_idx,data=pdata,model="pooling")
 summary(pooling)
 
 #BETWEEN ESTIMATOR
-between=plm(Y~X,data=pdata,model="between")
+between=plm(gdpchange~gsavs+unemp+gini+year_idx,data=pdata,model="between")
 summary(between)
 
 #FIXED EFFECTS OR WITHIN PARAMETERS
-fixed=plm(Y~X,data=pdata,model="within")
+fixed=plm(gdpchange~unemp+gsavs+gini+year_idx+id_idx,data=pdata,model="within")
 summary(fixed)
 
 #RANDOM EFFECTS
-random=plm(Y~X,data=pdata,model="random")
+random=plm(gdpchange~unemp+gsavs+gini+year_idx,data=pdata,model="random")
 summary(random)
 
 #LM TEST RANDOM EFFECTS VS OLS
@@ -130,5 +133,3 @@ pFtest(fixed,pooling)
 
 #HAUSMAN TEST FOR FIXED VS RANDOM EFFECTS
 phtest(random,fixed)
-
-
