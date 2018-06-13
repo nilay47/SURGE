@@ -1,0 +1,134 @@
+#for GINI
+g=ginif[3:267,47:61]
+g2=ginif[3:267,1]
+gininew=cbind(g2,g)
+
+#for gdpgrowth
+g1=gdpgrowth[3:267,1]
+g=gdpgrowth[3:267,47:61]
+gdp=cbind(g1,g)
+
+#for UNEMPLOYMENT
+u2=unempf[3:267,1] 
+u=unempf[3:267,47:61]
+unempnew=cbind(u2,u)
+
+#for GROSS SAVING RATE
+gs=gsavsf[3:267,47:61]
+gs2=gsavsf[3:267,1]
+gsavsnew=cbind(gs2,gs)
+
+#for FERTILITY
+f=ferf[3:267,47:61] 
+f2=ferf[3:267,1]
+fernew=cbind(f2,f)
+
+#for removing incomplete cases
+MATRIX=cbind(gdp,gininew,gsavsnew,unempnew,fernew)
+info=MATRIX[complete.cases(MATRIX), ]
+
+#for separate variables
+gdpchange=data.matrix(info[1:12,2:16])
+gini=data.matrix(info[1:12,18:32])
+gsavs=data.matrix(info[1:12,34:48])
+unemp=data.matrix(info[1:12,50:64])
+fer=data.matrix(info[1:12,66:80])
+countries=data.matrix(info[1:12,1])
+
+#repeating country names
+country=c()
+for(i in 2:12){
+  x=rep(countries[i],15)
+  country=append(country,x)
+}
+country=t(country)
+years=rep(2002:2016,11)
+years=t(years)
+#years=rbind("years",years)
+
+#for GDP
+gdpp=c()
+for(i in 2:12){
+  x=t(gdpchange[i,])
+  x=t(x)
+  gdpp=rbind(gdpp,x)
+}
+#gdpp=rbind("gdp",gdpp)
+
+#for UNEMP
+unempp=c()
+for(i in 2:12){
+  x=t(unemp[i,])
+  x=t(x)
+  unempp=rbind(unempp,x)
+}
+#unempp=rbind("unemp",unempp)
+
+#for GINI
+ginip=c()
+for(i in 2:12){
+  x=t(gini[i,])
+  x=t(x)
+  ginip=rbind(ginip,x)
+}
+#ginip=rbind("gini",ginip)
+
+#for GSAVS
+gsavsp=c()
+for(i in 2:12){
+  x=t(gsavs[i,])
+  x=t(x)
+  gsavsp=rbind(gsavsp,x)
+}
+#gsavsp=rbind("gdp",gsavsp)
+
+id=c()
+for(i in 1:11){
+  x=rep(i,15)
+  x=t(x)
+  id=append(id,x)
+}
+#id=t(id)
+data=cbind(gdpp,ginip,gsavsp,unempp,id,years)
+colnames(data)=c("gdpchange","gini","gsavs","unemp","idx","years")
+rownames(data)=c(1:165)
+
+write.csv(data,file="data.csv")
+mydata <- read.csv("data.csv",na.strings = ".") 
+
+library(plm)
+
+Y=cbind(gdpp)
+X=cbind(ginip,gsavsp,unempp)
+
+summary(Y)
+summary(X)
+
+pdata=pdata.frame(mydata,index=c("idx","years"))
+
+#POOLED OLS ESTIMATOR
+pooling=plm(Y~X,data=pdata,model="pooling")
+summary(pooling)
+
+#BETWEEN ESTIMATOR
+between=plm(Y~X,data=pdata,model="between")
+summary(between)
+
+#FIXED EFFECTS OR WITHIN PARAMETERS
+fixed=plm(Y~X,data=pdata,model="within")
+summary(fixed)
+
+#RANDOM EFFECTS
+random=plm(Y~X,data=pdata,model="random")
+summary(random)
+
+#LM TEST RANDOM EFFECTS VS OLS
+plmtest(pooling)
+
+#LM TEST FIXED EFFECTS VS OLS
+pFtest(fixed,pooling)
+
+#HAUSMAN TEST FOR FIXED VS RANDOM EFFECTS
+phtest(random,fixed)
+
+
