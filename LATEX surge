@@ -1,0 +1,505 @@
+% $Id: jfesample.tex,v 19:a118fd22993e 2013/05/24 04:57:55 stanton $
+\documentclass[11pt]{article}
+%\usepackage[document]{ragged2e}
+% DEFAULT PACKAGE SETUP
+
+\usepackage{setspace,graphicx,epstopdf,amsmath,amsfonts,amssymb,amsthm,versionPO}
+\usepackage{marginnote,datetime,enumitem,subfigure,rotating,fancyvrb}
+\usepackage{hyperref,float}
+\usepackage[longnamesfirst]{natbib}
+\usdate
+
+% These next lines allow including or excluding different versions of text
+% using versionPO.sty
+
+\excludeversion{notes}		% Include notes?
+\includeversion{links}          % Turn hyperlinks on?
+
+% Turn off hyperlinking if links is excluded
+\iflinks{}{\hypersetup{draft=true}}
+
+% Notes options
+\ifnotes{%
+\usepackage[margin=1in,paperwidth=10in,right=2.5in]{geometry}%
+\usepackage[textwidth=1.4in,shadow,colorinlistoftodos]{todonotes}%
+}{%
+\usepackage[margin=1in]{geometry}%
+\usepackage[disable]{todonotes}%
+}
+
+% Allow todonotes inside footnotes without blowing up LaTeX
+% Next command works but now notes can overlap. Instead, we'll define 
+% a special footnote note command that performs this redefinition.
+%\renewcommand{\marginpar}{\marginnote}%
+
+% Save original definition of \marginpar
+\let\oldmarginpar\marginpar
+
+% Workaround for todonotes problem with natbib (To Do list title comes out wrong)
+\makeatletter\let\chapter\@undefined\makeatother % Undefine \chapter for todonotes
+
+% Define note commands
+\newcommand{\smalltodo}[2][] {\todo[caption={#2}, size=\scriptsize, fancyline, #1] {\begin{spacing}{.5}#2\end{spacing}}}
+\newcommand{\rhs}[2][]{\smalltodo[color=green!30,#1]{{\bf RS:} #2}}
+\newcommand{\rhsnolist}[2][]{\smalltodo[nolist,color=green!30,#1]{{\bf RS:} #2}}
+\newcommand{\rhsfn}[2][]{%  To be used in footnotes (and in floats)
+\renewcommand{\marginpar}{\marginnote}%
+\smalltodo[color=green!30,#1]{{\bf RS:} #2}%
+\renewcommand{\marginpar}{\oldmarginpar}}
+%\newcommand{\textnote}[1]{\ifnotes{{\noindent\color{red}#1}}{}}
+\newcommand{\textnote}[1]{\ifnotes{{\colorbox{yellow}{{\color{red}#1}}}}{}}
+
+% Command to start a new page, starting on odd-numbered page if twoside option 
+% is selected above
+\newcommand{\clearRHS}{\clearpage\thispagestyle{empty}\cleardoublepage\thispagestyle{plain}}
+
+% Number paragraphs and subparagraphs and include them in TOC
+\setcounter{tocdepth}{2}
+
+% JFE-specific includes:
+
+\usepackage{indentfirst} % Indent first sentence of a new section.
+\usepackage{jfe}          % JFE-specific formatting of sections, etc.
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{assumption}{Assumption}[section]
+\newtheorem{proposition}{Proposition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}{Corollary}
+\newtheorem{condition}{Condition}
+
+\begin{document}
+
+\setlist{noitemsep}  % Reduce space between list items (itemize, enumerate, etc.)
+%\onehalfspacing      % Use 1.5 spacing
+% Use endnotes instead of footnotes - redefine \footnote command
+
+\title{Problem of Multicollinearity and Violation of Weak Exogeneity Principle, Some Corrective measures and Application in a Recent Study\footnotetext{Support from SURGE, IIT Kanpur}}
+
+\author{Nilay Tiwari\\Prof. Sharmistha Mitra\\
+  IIT Kanpur}
+
+\date{}              % No date for final submission
+
+% Create title page with no page number
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\singlespacing
+
+\maketitle
+
+\vspace{-.2in}
+\begin{abstract}
+\noindent The Okun’s Law proposed by Arthur Melvin Okun in 1962 establishes a relationship between unemployment and GDP, whereby a percentage increase in unemployment causes a 2\% fall in GDP.
+\vfill
+A recent 2016 study entitled ‘Economic Growth & Income Inequality: A revised cross-sectional econometric analysis of the global impact of income inequality on economic growth around the world’ was published in Econometric Analysis U.G. Research by A. Hunter, W. Martinez, & U. Patel of Georgia Institute of Technology by S. Dhongde.
+\vfill
+This paper examines the effects of inequality on GDP per capita growth in the year 2007 for 74 countries, both developed and developing ones around the world with the World Bank data and compares that relationship to other impactful factors on economic growth like Gross Savings Rate, Fertility Rate, and the Unemployment rate. The paper uses GINI coefficient as a measure of the income inequality. The results show counterproductive relationship between unemployment and economic growth, quite contrary Okun’s Law, which warrants further research.
+ \vfill
+In this Research Proposal, we propose to look into the various factors that would possibly lead to the positive relationship between unemployment and GDP per capita as opposed to the desired. The possible causes include MultiCollinearity among the covariates and violation of the weak exogeneity assumption between the covariates and the error in the model.
+ \vfill
+To take the case of the possible shortcomings of the study we plan to apply the Variance Inflation Factor and Ridge Regression for the MultiCollinearity problem and use the Instrumental Variable Estimation procedure for the Endogenous Covariate Problem.
+\vfill
+In this Research Work, we propose to represent GDP change as GDP growth rate, a better way than the one used in the paper. We also propose that the Fertility Rate is a factor which depends upon the fact weather the country is a Developed or a Developing Economy. We plan on dropping the Correlated variables by the method of Variance Inflation Factor and then constructing the subsequent Subset Regression Models for all countries. A Panel Data Regression for the Models of 11 countries in the 15 year range 2002-2016 will also be constructed.
+\vfill
+The Results from the work will give us a better understanding on the variation of the dependence between GDP growth with Fertility Rate and Unemployment Rate with the change in the Economy from a developing to developed one.
+\end{abstract}
+
+\medskip
+
+%\noindent \textit{JEL classification}: XXX, YYY.
+
+%\medskip
+\noindent \textit{Keywords}: MutiCollinearity, Ridge Regression, Panel Data Regression, Endogeneity.
+
+\thispagestyle{empty}
+
+\clearpage
+
+\onehalfspacing
+\setcounter{footnote}{0}
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\setcounter{page}{1}
+
+\section{Introduction}
+The Okun’s Law proposed by Arthur Melvin Okun in 1962 establishes a relationship between unemployment and GDP, whereby a percentage increase in unemployment causes a 2\% fall in GDP.
+\vfill
+The relation between fertility rate and GDP growth also has been a topic of research. The majority of the literature points towards the initial increase of fertility rate with economic growth and the subsequent decline in fertility rate after the economic growth.
+\vfill
+These results point out to the fact that the dependence of the fertility rate with GDP growth might depend on the fact if the country is a developing or a developed one. 
+\vfill
+A recent 2016 study entitled ‘Economic Growth & Income Inequality: A revised cross-sectional econometric analysis of the global impact of income inequality on economic growth around the world’ was published in Econometric Analysis U.G. Research by A. Hunter, W. Martinez, & U. Patel of Georgia Institute of Technology by S. Dhongde.
+\vfill
+This paper examines the effects of inequality on GDP per capita growth in the year 2007 for 74 countries, both developed and developing ones around the world with the World Bank data and compares that relationship to other impactful factors on economic growth like Gross Savings Rate, Fertility Rate, and the Unemployment rate. The paper uses GINI coefficient as a measure of the income inequality. The results show positive relationship between unemployment and economic growth, quite contrary to Okun’s Law. The results also show positive relation of economic growth between GDP per capita growth in the year 2007 with GINI, Gross savings rate and fertility rate.
+\vfill
+We believe that the possible reasons for the counter relationship between GDP growth and unemployment might be MultiCollinearity among the covariates and violation of the weak exogeneity assumption between the covariates and the error in the model. The problem of Multicollinearty produces wrong results and thus needs to be solved. The Multicollinearity between the covariates can be identified with the hep of the Variance Inflation Factor and some of the covariates need to be dropped which is done with the help of Subset Regression Models.
+\vfill
+This paper differs from the earlier paper on the fact that the time series regression is done on the 11 countries for the year range of 2002 to 2016 and the various countries make 11 models which include 4 developed and 7 developing countries. The measure used in this paper is also opposed to the one used in the earlier version. We have proposed that the GDP growth rate is a better measure of economic growth of a country. The other contribution of this work is to indicate the opposing relationship of the fertility rate and economic growth with the chane in the economy from a developed to a developing one.
+\vfill 
+The paper proceeds in the following order:
+\newpage
+
+\section{Linear Regression} \label{sec:Model}
+ Regression analysis is a statistical technique for investigating and modeling the
+relationship between variables . Applications of regression are numerous and occur
+in almost every fi eld, including engineering, the physical and chemical sciences,
+economics, management, life and biological sciences, and the social sciences. In fact,
+regression analysis may be the most widely used statistical technique. 
+\subsection{Simple Linear Regression Model}
+Simple linear regression model , that is, a model with a
+single regressor x that has a relationship with a response y that is a straight line. This simple linear regression model is
+\begin{equation}
+  y = \beta_0 + \beta_1x + \epsilon
+\end{equation}
+where the intercept $\beta_0$ and the slope $\beta_1$ are unknown constants and $\epsilon$ is a random error component. The errors are assumed to have mean zero and unknown variance $\sigma^2$. Additionally we usually assume that the errors are uncorrelated. This means that
+the value of one error does not depend on the value of any other error. 
+
+\subsection{Multiple Linear Regression Model}
+A regression model that involves more than one regressor variable is called a multiple regression model.In general, the response y may be related to k regressor or predictor variables.\\
+The model
+\begin{equation}
+    y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 +.....+ \beta_k x_k + \epsilon
+\end{equation}
+is called a mnltiple linear regression model with k regressors. The parameters $\beta_j$ , j = 0, 1,...., k , are called the regression coefficients . This model describes a hyperplane in the k - dimensional space of the regressor variables $x_j$ . The parameter $\beta_j$ represents the expected change in the response y per unit change in $x_j$ when all of
+the remaining regressor variables $x_i$ ( i $\ne$ j ) are held constant . For this reason the parameters $\beta_j$ , j = 1, 2,...., k , are often called partial regression coefficients .
+It is more convenient to deal with multiple regression models if they are expressed in matrix notation. This allows a very compact display of the model, data, and results. In matrix notation, the model given by Eq. (2) is
+\begin{equation}
+    \pmb{y = X \mathbf{\beta} + \epsilon}
+\end{equation}
+where\\
+\begin{center}
+    \textbf{y} = \begin{pmatrix}
+$y_1$\\$y_2$\\$y_3$\\.\\.\\.\\$y_k$
+\end{pmatrix}
+\textbf{X} = \begin{pmatrix}
+1 & $x_{11}$ & $x_{12}$ & ... & $x_{1k}$\\
+1 & $x_{21}$ & $x_{22}$ & ... & $x_{2k}$\\
+.&.&.&...&.\\.&.&.&...&.\\.&.&.&...&.\\
+1 & $x_{n1}$ & $x_{n2}$ & ... & $x_{nk}$
+\end{pmatrix}
+\end{center}\\
+\begin{center}
+    \pmb{$\beta$} = \begin{pmatrix}
+$\beta_1$\\$\beta_2$\\$\beta_3$\\.\\.\\.\\$\beta_k$ 
+\end{pmatrix}
+    \pmb{$\epsilon$} = \begin{pmatrix}
+$\epsilon_1$\\$\epsilon_2$\\$\epsilon_3$\\.\\.\\.\\$\epsilon_k$ 
+\end{pmatrix}
+\end{center}
+\\ In general, \textbf{y} is an n x 1 vector of the observations, \textbf{X} is an n x p matrix of the levels
+of the regressor variables, \pmb{$\beta$} is a p x 1 vector of the regression coefficients, and \pmb{$\epsilon$} is
+an n x 1 vector of random errors. 
+
+\subsection{Ordinary Least Squares(OLS) Estimator}
+The method of least squares can be used to estimate the regression coefficients in eq. (2) . Suppose that n $>$ k observations are available, and let $y_i$ denote the $i^{th}$
+observed response and x$_ij$ denote the $i^{th}$ observation or level of regressor x$_j$ . The
+data will appear as in Table 3.1 . We assume that the error term \epsilon in the model has
+E($\epsilon$) = 0, Var($\epsilon$) = $\sigma^2$ , and that the errors are uncorrelated. 
+\\
+We wish to find the vector of least squares estimators,  $\hat{\pmb{\beta}}$, that minimizes the mean square error term 
+\begin{center}
+    S(\pmb{$\beta$})=$\sum_{i=1}^{n} \epsilon_i^2$ = \pmb{$\epsilon$}$\mathbf{'}$\pmb{$\epsilon$} = \textbf{(y - X\pmb{$\beta$})}$\mathbf{'}$\textbf{(y - X\pmb{$\beta$})}
+\end{center}
+which is given by,
+\begin{equation}
+    \hat{\pmb{\beta}} = \mathbf{(X'X)^{-1}X'y}
+\end{equation}
+ provided that the inverse matrix $(\mathbf{X'X})^{-1}$ exists. The $(\mathbf{X'X})^{-1}$ matrix will always exist
+if the regressors are linearly independent , that is, if no column of the X matrix is a
+linear combination of the other columns.
+
+\section{Multicollinearity}
+ If there is no linear relationship between the regressors, they are said to be orthogonal. However, in some situations the regressors are nearly perfectly linearly related, and in such cases the inferences based on the regression model can be misleading or erroneous. When there are near - linear dependencies among the regressors, the problem of multicollinearity is said to exist.
+ 
+\subsection{Sources of Multicollinearity}
+ We write the multiple regression model as
+ \begin{center}
+      $\pmb{y = X \mathbf{\beta} + \epsilon}$
+ \end{center}
+ \\ Where, \textbf{y} is an n x 1 vector of the observations, \textbf{X} is an n x p matrix of the levels
+of the regressor variables, \pmb{$\beta$} is a p x 1 vector of the regression coefficients, and \pmb{$\epsilon$} is
+an n x 1 vector of random errors where \pmb{$\epsilon$} \sim \mathcal{N}($0,\,\sigma^{2}$).\\
+Consequently, $\mathbf{X'X}$ is a p x p matrix of correlations † between the regressors and
+$\mathbf{X'y}$ is a p x 1 vector of correlations between the regressors and the response. Let the $j^{th}$ column of the \textbf{X} matrix be denoted $\mathbf{X_j}$ , so that \textbf{X} = [ $\mathbf{X_1}$ , $\mathbf{X_2}$ , . . . , $\mathbf{X_p}$ ]. 
+Thus, $\mathbf{X_j}$ contains the n levels of the $j^{th}$ regressor variable. We may formally define
+multicollinearity in terms of the linear dependence of the columns of X . The vectors
+$\mathbf{X_1}$ , $\mathbf{X_2}$ , . . . , $\mathbf{X_p}$ are linearly dependent if there is a set of constants $t_1$ , $t_2$ , . . . , $t_p$ , not
+all zero, such that
+\begin{equation}
+    \sum_{j=1}^{p} t_j\mathbf{X_j} = 0  
+\end{equation}
+ If Eq. (5) holds exactly for a subset of the columns of X , then the rank of the $\mathbf{X'X}$
+matrix is less than p and $\mathbf{X'X}^-{-1}$
+ does not exist. However, suppose that Eq. (9.1) is
+approximately true for some subset of the columns of X . Then there will be a near -
+ linear dependency in $\mathbf{X'X}$ and the problem of multicollinearity is said to exist. Note
+that multicollinearity is a form of ill - conditioning in the $\mathbf{X'X}$ matrix. Furthermore,
+the problem is one of degree, that is, every data set will suffer from multicollinearity
+to some extent unless the columns of $\mathbf{X}$ are orthogonal.\\\\
+There are four primary sources of multicollinearity :\\
+ 1. The data collection method employed\\
+ 2. Constraints on the model or in the population\\
+ 3. Model specification\\
+ 4. An overdefined model \\
+ 
+\subsection{Effects of Multicollinearity}
+For the case of Multiple Regressors, multicollinearity produces
+similar effects. It can be shown that the diagonal elements of the \textbf{C} = $\mathbf{(X'X)}^{-1}$ matrix are
+\begin{equation}
+    C_{jj} = \frac{1}{1-R_j^2}   ,    j = 1,2,...p
+\end{equation}
+ 
+ where $R_j^2$
+ is the coefficient of multiple determination from the regression of $x_j$ on the remaining p − 1 regressor variables. If there is strong multicollinearity between
+$x_j$ and any subset of the other p − 1, regressors, then the value of $R_j^2$ will be close to unity. Since the variance of ˆ
+$\beta_j$ is Var($\beta_j$) = $C_{jj}\sigma^{2}$ = $(1 - R_j^2)^{-1}\sigma^{2}$ , strong multicollinearity
+implies that the variance of the least - squares estimate of the regression
+coefficient $\beta_j$ is very large 
+ 
+Multicollinearity also tends to produce least - squares estimates $\hat{\beta}$
+ that are too
+large in absolute value. To see this, consider the squared distance from $\hat{\pmb{\beta}}$ to the true
+parameter vector $\pmb{\beta}$ , for example,
+
+\begin{center}
+    $L_1^2$ = ${(\hat{\pmb{\beta}}-\pmb{\beta})'(\hat{\pmb{\beta}}-\pmb{\beta})}$\\
+\end{center}
+Where expected squred distance, E($L_1^2$) is
+\begin{center}
+    E($L_1^2$) = E(${(\hat{\pmb{\beta}}-\pmb{\beta})'(\hat{\pmb{\beta}}-\pmb{\beta})}$) = $\sum_{j=1}^{p}E((\hat{\beta}-\beta))^2$\\
+     =$\sum_{j=1}^{p}Var(\hat{\beta_j})$ = $\sigma^{2}Tr(\mathbf{X'X})$
+\end{center}
+Which gives,
+\begin{equation}
+  E(L_1^2) = \sigma^{2}Tr(\mathbf{X'X}^{-1})    
+\end{equation}
+where the trace of a matrix (abbreviated Tr) is just the sum of the main diagonal
+elements. When there is multicollinearity present, some of the eigenvalues of $\mathbf{X'X}$
+will be small. Since the trace of a matrix is also equal to the sum of its eigenvalues,
+Eq. (7) becomes
+\begin{equation}
+    E(L_1^2) = \sigma^{2}\sum_{j=1}^{p}\frac{1}{\lambda_j} 
+\end{equation}
+\section{Variance Inflation Factor}
+We know that the diagonal elements of the \textbf{C} = $\mathbf{X'X}^{-1}$ matrix are very useful in detecting multicollinearity. Recall from Eq. (6) that $C_{jj}$ , the $j_{th}$
+diagonal element of \textbf{C} , can be written as  $C_{jj} = (1-R_j^2)^{-1}$
+, where $R_j^2$ is the coefficient
+of determination obtained when $x_j$ is regressed on the remaining p − 1 regressors. If $x_j$ is nearly orthogonal to the remaining regressors, $R_j^2$ is small and $C_{jj}$ is close to
+unity, while if $x_{j}$ is nearly linearly dependent on some subset of the remaining regressors,
+$R_j^2$ is near unity and $C_{jj}$ is large. Since the variance of the j th regression
+coeffi cients is $C_{jj}\sigma^2$
+ , we can view $C_{jj}$ as the factor by which the variance of ˆ
+$\beta_{j}$
+ is
+increased due to near - linear dependences among the regressors.
+\\
+We call, 
+\begin{equation}
+    VIF_j = C_{jj} = (1-R_j^2)^{-1}
+\end{equation}
+ the variance inflation factor.  Practical experience indicates that if any of the VIFs exceeds 5 or 10,
+it is an indication that the associated regression coeffi cients are poorly estimated
+because of multicollinearity. 
+\subsection{Condition Number}
+ The characteristic roots or eigenvalues of $\mathbf{X'X}$ , say $\lambda_1$ , $\lambda_2$ , . . . , $\lambda_p$ , can be used
+to measure the extent of multicollinearity in the data. If there are one or more near - linear dependences in the data, then one or more of the characteristic roots
+will be small. One or more small eigenvalues imply that there are near - linear dependences
+among the columns of \textbf{X} . Some analysts prefer to examine the condition
+number of $\mathbf{X'X}$ , defined as
+\begin{equation}
+    \kappa = \frac{\lambda_{max}}{\lambda_{min}}
+\end{equation}
+ This is just a measure of the spread in the eigenvalue spectrum of X′X . Generally,
+if the condition number is less than 100, there is no serious problem with multicollinearity.
+Condition numbers between 100 and 1000 imply moderate to strong multicollinearity,
+and if κ exceeds 1000, severe multicollinearity is indicated. 
+\\
+The condition indices of the $\mathbf{X'X}$ matrix are
+\begin{center}
+    $\kappa_j$ = $\frac{\lambda_{max}}{\lambda_{j}}$ , j = 1,2,...p
+\end{center}
+\section{Endogenous Regressors}
+\subsection{Classical Assumptions of OLS}
+Following are the classical assumptions of the OLS :\\
+1. The regression model is linear in the coefficients and the error term\\
+2. The error term has a population mean of zero\\
+3. All independent variables are uncorrelated with the error term\\
+4. Observations of the error term are uncorrelated with each other\\
+5. The error term has a constant variance (no heteroscedasticity)\\
+6. No independent variable is a perfect linear function of other explanatory variables\\
+7. The error term is normally distributed (optional)\\
+ 
+For the classical regression model,
+\begin{equation}
+    \pmb{y = X \mathbf{\beta} + \epsilon}
+\end{equation}
+The following must hold true for OLS to be carried out :\\
+1. $E(\epsilon_i|X_i)$ = 0 (Weak Exogeneity Principle)\\
+2. $(X_i,Y_i)$ , i= 1,2,....N are independently and identically distributed\\
+3. Big outliers are unlikely.\\
+
+\subsection{Endogenous Regressors}
+When $E(\epsilon_i|X_i)$ $\ne$ 0, $X_i$ is said to be weakly endogenous.\\ Sources of Endogeneity :\\ 
+1. Omitted variables\\
+2. Errors in variables\\
+3. Simultaneity\\
+\section{Instrumental Variable Estimation}
+A basic assumption in analyzing the performance of estimators in a multiple regression is that the
+explanatory variables and disturbance terms are independently distributed. The violation of such assumption
+disturbs the optimal properties of the estimators. The instrumental variable estimation method helps in
+estimating the regression coefficients in multiple linear regression model when such violation occurs.\\
+Suppose one or more explanatory variables is correlated with the disturbances in the limit, then we can write
+\begin{center}
+    plim($\frac{1}{n}\mathbf(X'\epsilon)$) $\ne$ 0
+\end{center}
+The consequences of such an assumption on ordinary least squares estimator are as follows:\\
+\begin{center}
+    $\hat{\pmb{\beta}} = \mathbf{(X'X)^{-1}X'y}$\\
+    $\pmb{\beta} = \mathbf{(X'X)^{-1}X'(X\beta + \epsilon)}$\\
+    $\hat{\pmb{\beta}} - \pmb{\beta} = \mathbf{(X'X)^{-1}X'\epsilon}$\\
+    =$\mathbf{(\frac{X'X}{n})^{-1}(\frac{X'\epsilon}{n}})$\\
+    $plim(\hat{\pmb{\beta}} - \pmb{\beta}) = plim(\mathbf{(\frac{X'X}{n})^{-1}}plim(\mathbf{(\frac{X'\epsilon}{n})^{-1}}$\\
+     $plim(\hat{\pmb{\beta}} - \pmb{\beta}) = \ne 0$
+\end{center}
+\\
+Consequently, $plim(\hat{\pmb{\beta}}) \ne \pmb{\beta}$, and thus OLS becomes an unbiased estimator of $\pmb{\beta}$.\\
+To overcome this problem and to obtain a consistent estimator of β, the instrumental variable estimation can be used.\\ \\
+Suppose that it is possible to find a data matrix \textbf{Z} of order (n x k) with the following properties :\\
+(i) $plim(\mathbf{(\frac{Z'X}{n})} = \sum_{ZX}$ is a finite and nonsingular matrix of full rank. This interprets that the variables in
+\textbf{Z} are correlated with those in \textbf{X} , in the limit.\\
+(ii) $plim(\mathbf{(\frac{Z'\epsilon}{n})} = 0$\\
+i.e., the variables in \textbf{Z} are uncorrelated with $\pmb{\epsilon}$ , in the limit.\\
+(iii) $plim(\mathbf{(\frac{Z'Z}{n})} = \sum_{ZZ}$ exists\\ \\
+Thus Z − variables are postulated to be\\
+1. uncorrelated with ε , in the limit and\\
+2. to have nonzero cross product with X.\\
+Such variables are called instrumental variables.\\
+The instrumental variable estimator of $\pmb{\beta}$ is \\
+\begin{equation}
+    \pmb{\hat{\beta}_{IV}} = \mathbf{(Z'X)^{-1}Z'y}
+\end{equation}
+The instrumental estimator satisfies, $plim(\pmb{\hat{\beta}_{IV}}) = \pmb{\beta}$
+\section{Panel Data Regression}
+Cross-sectional data is the data collected on several
+individuals/units at one point in time. Time series data data collected on one individual/unit over
+several time periods. The combination of these two data is known as Panel Data Regression. Panel data are repeated cross-sections over time, in essence there
+will be space as well as time dimensions. There are two types of model for panel data, Fixed and Random Effects Models.\\
+The various models for Panel Data are as follows :
+
+\subsection{Pooled Estimator}
+This is the simplest estimator for the Panel Data It essentialy ignores the panel structre of the data and uses OLS assuming the classical assumptions of OLS estimator. It is the easiest model avaialble but is essentialy not suitable for our use as it ignores the panel structure of the data.
+
+\subsection{Fixed Effects Model}
+When using FE we assume that something within the individual may impact or bias the
+predictor or outcome variables and we need to control for this. This is the rationale behind
+the assumption of the correlation between entity’s error term and predictor variables. FE
+remove the effect of those time-invariant characteristics so we can assess the net effect of
+the predictors on the outcome variable.
+Another important assumption of the FE model is that those time-invariant characteristics
+are unique to the individual and should not be correlated with other individual
+characteristics. Each entity is different therefore the entity’s error term and the constant
+(which captures individual characteristics) should not be correlated with the others. If the
+error terms are correlated, then FE is no suitable since inferences may not be correct and
+you need to model that relationship (probably using random-effects), this is the main
+rationale for the Hausman test (presented later on in this document).\\
+The equation for the fixed effects model becomes:
+\begin{equation}
+    Y_{it} = \beta_iX_{it} + \alpha_i + \epsilon_{it}
+\end{equation}
+Where\\
+- $\alpha_i$ is the unknown intercept for each entity (
+n entity-specific intercepts).\\
+- $Y_{it}$  is the dependent variable (DV) where i = entity and
+t = time.\\
+- $X_{it}$ represents one independent variable (IV), \\
+- $\beta_i$ is the coefficient for that IV,\\
+- $\epsilon_{it}$ is the error term.\\
+The fixed-effects model controls for all time-invariant
+differences between the individuals, so the estimated
+coefficients of the fixed-effects models cannot be biased
+because of omitted time-invariant characteristics…\\
+
+
+ 
+ 
+ 
+\\\\===============================================================
+Nothing very odd about the formatting of section and subsection headings. Here's a reference to Section~\ref{sec:subsec} or~\ref{sec:subsub}. Let's also add some parenthetical citations (see~\citealp{Stanton:95,CarpenterStantonWallace:12}; and \citealp{Campbell:03}). 
+
+To justify adding a subsection here, from now on, we'll assume
+\begin{condition}\label{cond:rates}
+$0 <  \hat{\mu} < \gamma\sigma^2$.
+\vspace{3mm}
+\end{condition}
+This condition might be useful if there was a model. 
+
+\subsection{Another Subsection, With a Figure}
+\label{sec:subsec}
+
+Figures get put at the end, with a note marking where they should go in the text, like this:
+
+\bigskip
+\centerline{\bf [Insert Figure~\ref{fig:0} near here]}
+\bigskip
+
+\subsubsection{A Subsubsection with a Proposition}
+\label{sec:subsub}
+
+Let's put a proposition here.
+\begin{proposition} \label{prop:3}
+If Condition~\ref{cond:rates} is satisfied,  a solution to the central
+planner's problem, $V(B,D,t) \in C^2\left( {\mathbb R}_{+}^2 \times
+  [0,T] \right)$, with control $a:[0,1]\times[0,T]\rightarrow [-\lambda,\lambda]$
+ if  $\gamma>1$ is
+\begin{equation} \label{eq:valuea}
+V(B,D,t) =  - \frac{(B+D)^{1-\gamma}}{1-\gamma}   w\left(\frac{B}{B+D},t\right).
+\end{equation}
+\end{proposition}
+
+\clearpage
+
+\appendix
+
+\section{An Appendix}
+\label{sec:app1}
+
+Here's an appendix with an equation. Note that equation numbering continues where it left off in the main body and that the JFE wants the word ``Appendix'' to appear before the letter in the appendix title. This is all handled in \texttt{jfe.sty}.
+\begin{equation}
+  E = mc^2.
+\label{eq:eqA}
+\end{equation}
+
+\section{Another Appendix}
+\label{sec:app2}
+
+Here's another appendix with an equation.
+\begin{equation}
+  E = mc^2.
+\end{equation}
+Note that this is quite similar to Equation~\eqref{eq:eqA} in Appendix~\ref{sec:app1}.
+
+\clearpage
+
+% Bibliography.
+
+\bibliographystyle{jfe}
+\bibliography{RHSbib}
+
+% Figures and tables, showing how to structure captions
+\clearpage
+
+\ 
+\vfill
+\begin{figure}[!htb]
+\centerline{
+%\includegraphics[width=7in]{Figure1}
+\rule{7in}{3in} % added by Karol Kozioł
+}
+  \caption{Structure of model. Capital can be invested in a bank sector and an equity sector. An intermediary has the expertise to reallocate capital between the sectors and to monitor bank capital against bank crashes.} \label{fig:0}
+\end{figure}
+\vfill
+\ 
+
+\end{document}
