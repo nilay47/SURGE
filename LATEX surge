@@ -421,42 +421,230 @@ differences between the individuals, so the estimated
 coefficients of the fixed-effects models cannot be biased
 because of omitted time-invariant characteristics…\\
 
-
- 
- 
- 
-\\\\===============================================================
-Nothing very odd about the formatting of section and subsection headings. Here's a reference to Section~\ref{sec:subsec} or~\ref{sec:subsub}. Let's also add some parenthetical citations (see~\citealp{Stanton:95,CarpenterStantonWallace:12}; and \citealp{Campbell:03}). 
-
-To justify adding a subsection here, from now on, we'll assume
-\begin{condition}\label{cond:rates}
-$0 <  \hat{\mu} < \gamma\sigma^2$.
-\vspace{3mm}
-\end{condition}
-This condition might be useful if there was a model. 
-
-\subsection{Another Subsection, With a Figure}
-\label{sec:subsec}
-
-Figures get put at the end, with a note marking where they should go in the text, like this:
-
-\bigskip
-\centerline{\bf [Insert Figure~\ref{fig:0} near here]}
-\bigskip
-
-\subsubsection{A Subsubsection with a Proposition}
-\label{sec:subsub}
-
-Let's put a proposition here.
-\begin{proposition} \label{prop:3}
-If Condition~\ref{cond:rates} is satisfied,  a solution to the central
-planner's problem, $V(B,D,t) \in C^2\left( {\mathbb R}_{+}^2 \times
-  [0,T] \right)$, with control $a:[0,1]\times[0,T]\rightarrow [-\lambda,\lambda]$
- if  $\gamma>1$ is
-\begin{equation} \label{eq:valuea}
-V(B,D,t) =  - \frac{(B+D)^{1-\gamma}}{1-\gamma}   w\left(\frac{B}{B+D},t\right).
+\subsection{Random Effects Model}
+The rationale behind random effects model is that, unlike the fixed effects model,
+the variation across entities is assumed to be random and uncorrelated with the
+predictor or independent variables included in the model.
+An advantage of random effects is that you can include time invariant variables. In the fixed effects model these variables are absorbed by the intercept.
+Random effects assume that the entity’s error term is not correlated with the
+predictors which allows for time-invariant variables to play a role as explanatory
+variables.
+In random-effects you need to specify those individual characteristics that may or
+may not influence the predictor variables. The problem with this is that some
+variables may not be available therefore leading to omitted variable bias in the
+model. \\
+ The random effects model is:
+\begin{equation}
+    Y_{it} = \betaX_{it} + \epsilon_{it}
 \end{equation}
-\end{proposition}
+\begin{equation}
+    \epsilon_{it} = \alpha_i + \eta_{it}
+\end{equation}
+\subsection{Fixed Effects vs Random Effects Model}
+To decide between fixed or random effects you can run a Hausman test where the
+null hypothesis is that the preferred model is random effects vs. the alternative the
+fixed effects (see Green, 2008, chapter 9). It basically tests whether the unique
+errors $\epsilon_i$ are correlated with the regressors, the null hypothesis is they are not.
+\section{Data}
+Our paper analyzes the cause of the wrong relationship between unemployment rate and GDP growth as shown by the previous work.
+The previous paper used the cross sectional data for 74 countries and did a regression for GDP growth as the dependent variable and fertility rate, unemployment rate, gross savings rate and GINI coefficient as the independent variables. The data was collected for the year 2007.\\
+But the regression on the 74 countries is not suitable for showing the correct relationship. A better way is to use the Time Series data instead and form a regression on the time series data for different countries and compare the results for all countries as different simulations of the same model and then analyzing the data and finding patterns in the relationships between developed and developing countries.\\
+THe previous paper used the percent change of GDP as our dependent variable (y) and decided on a range of five years, 2007-2012,
+in order to capture the short and medium economic growth rate.\\
+i.e. the measure for GDP growth in year 2007 used was
+\begin{center}
+    GDP growth(\%) = $\frac{(GDP per capita(year-2012)-GDP per capita(year-2007))}{GDP per capita(year-2007)} * 100\%$
+\end{center}
+The measure used in our work for GDP growth is the World Bank data for annual GDP growth rate(\%). The rest of the data consists of fertility rate, unemployment rate, gross savings rate and GINI coefficient for 11 Countries, consisting of 4 developed and 7 developing countries for a year range of 14 years from 2002 to 2016, taken from the World Bank. There was no missing data and the 14 year range from 2002-2016 remains descriptive of the relationships between the regressors\\\\
+The countries have been classified as developing and developed countries.These two categories were created using the World Bank
+classification system: Within the dataset, countries which have an income of \$12,736 or more were classified as the developed, while a zero is placed for countries which have an income lower than \$12,736 were classified as the developing countries.\\
+\subsection{Previous Results}
+Overall, the OLS regression models showed that inequality and economic growth share a positive
+relationship.  By obtaining data from the World Bank, sample size of 74 countries were constructed and the utilization of independent variables such as the Gini coefficient, gross
+savings rate, unemployment, and fertility to measure economic growth (change in GDP per capita for the
+period 2007-2012). In addition to the Gini coefficient, the analysis showed that gross savings rate,
+unemployment, and fertility all possessed positive impacts on economic growth for the time period of 2007 to 2012.
+
+\section{Results}
+
+The results of the Linear Regression Model :
+\begin{equation}
+    Gdpchange = \beta_0 + \beta_1GINI + \beta_2Gsavs + \beta_3Unemp + \beta_4Fer + \epsilon
+\end{equation}
+for the 11 countries have been shown in detail in the Appendix.\\
+The value of the coefficients of fertilty rate and unemployment rate in the above regression model for the 11 countries along with the Class(high income or low income) is as follow :\\
+The COUNTRY 1:\\
+Unemployment: -1.1872
+Fertility rate: -51.527
+Country’s Class:  high income class\\
+COUNTRY 2:\\
+Unemployment: 7.9485
+Fertility Rate: -17.0472
+Country’s Class: high income class\\
+COUNTRY 3:\\
+Unemployment:  -0.182
+Fertility Rate:  1.8242 
+Country’s Class:  low income class\\
+COUNTRY 4:\\
+Unemployment:  -1.34
+Fertility Rate:  2.974
+Country’s Class:  low income class\\
+COUNTRY 5:\\
+Unemployment:  -2.25
+Fertility Rate:  -14.699
+Country’s Class:  high income class\\
+COUNTRY 6:\\
+Unemployment:  0.85
+Fertility Rate:  -2.084
+Country’s Class:  high income class\\
+COUNTRY 7:\\
+Unemployment:  -1.252
+Fertility Rate:  -3.683
+Country’s Class:  low income class\\
+COUNTRY 8:\\
+Unemployment:  2.057
+Fertility Rate:  89.04
+Country’s Class:  low income class\\
+COUNTRY 9:\\
+Unemployment:  -1.462
+Fertility Rate:  -0.2495
+Country’s Class:  low income class\\
+COUNTRY 10:\\
+Unemployment:  3.263
+Fertility Rate:  8.8507
+Country’s Class:  low income class\\
+COUNTRY 11:\\
+Unemployment:  -2.209
+Fertility Rate:  -1.038
+Country’s Class:  low income class\\
+
+So, the complete statistics of the results is as follows :\\
+Data for developed Countries:\\
+Total no. : 4\\
+Number of countries with negative coefficient of unemployment rate: 2/4\\
+Number of countries with negative coefficient of fertility rate: 4/4\\
+Data for developing Countries:\\
+Total no. : 7\\
+Number of countries with negative coefficient of unemployment rate: 5/7\\
+Number of countries with negative coefficient of fertility rate: 3/7\\
+
+The results shown above clearly indicate the developed countries have a NEGATIVE relationship between fertility rate and GDP growth rate. It was expected as the previous literature points out towards the fact that the Fertility Rate increases in the initial stage of the economic growth and then becomes stagnant as the economy reaches a stable stage and gradually begins to decrease with the country falling in the category of the developed ones.\\
+
+However for the developing countries, there is no clear relationship between the fertility rate and the GDP growth rate.\\
+
+\subsection{Multicollinearity Analysis}
+It is necessary to perform a Multicollinearity to be sure that the OLS carried is the unbiased estimator of the Model Coefficients.
+For the Multicollinearity, the Varinace Inflation Factor was calculated for all regressors for all 11 Models. The detailed results are as follows,
+\graphicspath{ {./vif/} }
+\begin{center}
+    \includegraphics{vif.png}
+\end{center}
+As we know that the VIF $<$ 5 means that the data is free of Multicollinearity and the analysis shows unbiased results but we can clearly see that the VIF for unemployment rate, gini coefficient and fertility rate all exceed 5 for 4 Models. Gross savings on the other hand has VIF $<$ 5 for all 11 Models. This warrents a possible relationship present between unemployment rate, gini coefficient and fertility rate. Since, these 3 can be correlated in only one manner i.e. all 3 are corrleated together which calls for the analysis of the Subset regression to identify the Most correlated regressor in these 3 and to drop that regressor.
+
+\subsection{Subset Regression}
+In order to identify the most suitable regressor to be dropped from the Model, we carried out the Subset Regression of all the the correlated regressors. Three models were constructed as follows:\\\\
+Model 1 with fertility rate dropped from the initial model:
+\begin{equation}
+    Gdpchange = \beta_0 + \beta_1GINI + \beta_2Gsavs + \beta_3Unemp + \epsilon
+\end{equation}
+Model 1 with unemployment rate dropped from the initial model:
+\begin{equation}
+    Gdpchange = \beta_0 + \beta_1GINI + \beta_2Gsavs + \beta_3Fer + \epsilon
+\end{equation}
+Model 1 with GINI dropped from the initial model:
+\begin{equation}
+    Gdpchange = \beta_0 + \beta_1Unemp+ \beta_2Gsavs + \beta_3Fer + \epsilon
+\end{equation}
+The value of the $R^2$ statsitic for the three models is as follows :
+\begin{center}
+    \includegraphics{Rsq.png}
+\end{center}
+Since the value of the $R^2$ is the highest for the Model with the fertility rate dropped, we drop it from our initial Model to solve the problem of Multicollinearity.
+
+\subsection{New Proposed Model}
+The Model proposed by us is the one with the fertility rate dropped from  initial model:
+\begin{equation}
+    Gdpchange = \beta_0 + \beta_1GINI + \beta_2Gsavs + \beta_3Unemp + \epsilon
+\end{equation}
+So, the coefficients of the unemployment in the above model for 11 countries is as follows :\\
+Country 1:\\
+Unemp :	-1.211
+Economy:    developed\\
+Country 2:\\
+Unemp :	18.67
+Economy:    developed\\
+Country 3:\\
+Unemp :	-.2921
+Economy:    developing\\
+Country 4:\\
+Unemp :	-1.3277
+Economy:    developing\\
+Country 5:\\
+Unemp :	-1.7439
+Economy:    developed\\
+Country 6:\\
+Unemp :	0.766
+Economy:    developed\\
+Country 7:\\
+Unemp :	-0.754
+Economy:    developing\\
+Country 8:\\
+Unemp :	1.227
+Economy:    developing\\
+Country 9:\\
+Unemp :	-1.46
+Economy:    developing\\
+Country 10:\\
+Unemp :	3.569
+Economy:    developing\\
+Country 11:\\
+Unemp :	-2.305
+Economy:    developing\\
+
+So, the complete statistics of the results is as follows :\\
+Data for developed Countries:\\
+Total no. : 4\\
+Number of countries with negative coefficient of unemployment rate: 2/4\\
+Data for developing Countries:\\
+Total no. : 7\\
+Number of countries with negative coefficient of unemployment rate: 5/7\\
+
+The unemployment rate shows expected results, for the devloping countries, a clear majority of the countries show a negative relationship between the unemployment rate and GDP growth rate as expected b the OKUN's Law. However no clear relationship is clear for the unemployment rate and GDP growth in the developed ones.\\
+These resuts can be attributed to the fact that the developed countries have a grant allocation for the unemployed population whereas the developing countries have no such grant available. Therefore, the unemployment has no such clear relationship with the GDP growth in the developed ones. But  for the case of he developing countries, the relationship is clear, in accordance with the OKUN's Law due to the fact that the developing countries have nothing to offer to he unemployed population and the uemployed population proves to be detrimental to the economy. The unemployed population generally indulges in the criminal activities and various other anti-societal activities and causes the overall economy to suffer.\\
+\section{Panel Data Regression}
+Since the data available with us contains both time series and cross-sectional data, we can apply Panel Data Regression for the Panel Data avaialble. The Panel Data Regression is carried out for the time series data for 14 years from 2002 to 2016 for 11 countries.
+\subsection{With Pooled OLS Estimator}
+The statistics for the estimator are as follows :\\
+P value for unemp : 0.59315\\
+n=11, T=15, N=165\\
+Coefficient for unemp = 0.0416
+\subsection{With Between Estimator}
+The statistics for the estimator are as follows :\\
+P value for unemp = 0.001775\\
+Coefficient for unemp = 0.191344
+\subsection{With Within Estimator of Fixed Effects Model}
+The statistics for the estimator are as follows :\\
+Pvalue for unemp = 1.11e-05\\
+Coefficient for unemp = -0.7652
+\subsection{With Random Effects Estimator}
+The statistics for the estimator are as follows :\\
+Pvalue for unemp = 0.59314\\
+Coefficient for unemp = .0416
+\subsection{LM Test for Random Effects vs Pooled OLS}
+\includegraphics{lmr.png}\\
+So, Random Effects turns out to be better than Pooled Estimator
+\subsection{LM Test for Fixed Effects vs Pooled OLS}
+\includegraphics{lmf.png}\\
+So, Fixed Effects turns out to be better than Pooled Estimator
+\subsection{LM Test for Fixed Effects vs Random Effects}
+\includegraphics{rf.png}\\
+Since, one of the model is inconsistent, therefore Random Effects turns out to be better than Pooled Estimator.\\
+So, fixed effects Model is the best model for panel data regression.\\
+The coefficient for the unemployment in the Fixed Effects Model is -0.76523, negative as expected from the Okun's law.
+
+ 
+ 
+\\\\\\\\\===============================================================
 
 \clearpage
 
