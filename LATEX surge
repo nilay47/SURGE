@@ -122,7 +122,7 @@ The Results from the work will give us a better understanding on the variation o
 \setcounter{footnote}{0}
 \renewcommand{\thefootnote}{\arabic{footnote}}
 \setcounter{page}{1}
-
+\newpage
 \section{Introduction}
 The Okun’s Law proposed by Arthur Melvin Okun in 1962 establishes a relationship between unemployment and GDP, whereby a percentage increase in unemployment causes a 2\% fall in GDP.
 \vfill
@@ -138,7 +138,7 @@ We believe that the possible reasons for the counter relationship between GDP gr
 \vfill
 This paper differs from the earlier paper on the fact that the time series regression is done on the 11 countries for the year range of 2002 to 2016 and the various countries make 11 models which include 4 developed and 7 developing countries. The measure used in this paper is also opposed to the one used in the earlier version. We have proposed that the GDP growth rate is a better measure of economic growth of a country. The other contribution of this work is to indicate the opposing relationship of the fertility rate and economic growth with the chane in the economy from a developed to a developing one.
 \vfill 
-The paper proceeds in the following order:
+The paper proceeds in the following order: First part contains the relevant theory in this area and the previous literature. The second part includes the Data used by us in our simulations. The third part consists of the detailed results produced by us and the conclusion drawn. The last part consists of the References and the Appendix which includes the detailed statistics of our results.
 \newpage
 
 \section{Linear Regression} \label{sec:Model}
@@ -209,7 +209,7 @@ which is given by,
  provided that the inverse matrix $(\mathbf{X'X})^{-1}$ exists. The $(\mathbf{X'X})^{-1}$ matrix will always exist
 if the regressors are linearly independent , that is, if no column of the X matrix is a
 linear combination of the other columns.
-
+\newpage
 \section{Multicollinearity}
  If there is no linear relationship between the regressors, they are said to be orthogonal. However, in some situations the regressors are nearly perfectly linearly related, and in such cases the inferences based on the regression model can be misleading or erroneous. When there are near - linear dependencies among the regressors, the problem of multicollinearity is said to exist.
  
@@ -282,6 +282,7 @@ Eq. (7) becomes
 \begin{equation}
     E(L_1^2) = \sigma^{2}\sum_{j=1}^{p}\frac{1}{\lambda_j} 
 \end{equation}
+\newpage
 \section{Variance Inflation Factor}
 We know that the diagonal elements of the \textbf{C} = $\mathbf{X'X}^{-1}$ matrix are very useful in detecting multicollinearity. Recall from Eq. (6) that $C_{jj}$ , the $j_{th}$
 diagonal element of \textbf{C} , can be written as  $C_{jj} = (1-R_j^2)^{-1}$
@@ -320,6 +321,7 @@ The condition indices of the $\mathbf{X'X}$ matrix are
 \begin{center}
     $\kappa_j$ = $\frac{\lambda_{max}}{\lambda_{j}}$ , j = 1,2,...p
 \end{center}
+\newpage
 \section{Endogenous Regressors}
 \subsection{Classical Assumptions of OLS}
 Following are the classical assumptions of the OLS :\\
@@ -345,6 +347,7 @@ When $E(\epsilon_i|X_i)$ $\ne$ 0, $X_i$ is said to be weakly endogenous.\\ Sourc
 1. Omitted variables\\
 2. Errors in variables\\
 3. Simultaneity\\
+\newpage
 \section{Instrumental Variable Estimation}
 A basic assumption in analyzing the performance of estimators in a multiple regression is that the
 explanatory variables and disturbance terms are independently distributed. The violation of such assumption
@@ -381,6 +384,7 @@ The instrumental variable estimator of $\pmb{\beta}$ is \\
     \pmb{\hat{\beta}_{IV}} = \mathbf{(Z'X)^{-1}Z'y}
 \end{equation}
 The instrumental estimator satisfies, $plim(\pmb{\hat{\beta}_{IV}}) = \pmb{\beta}$
+\newpage
 \section{Panel Data Regression}
 Cross-sectional data is the data collected on several
 individuals/units at one point in time. Time series data data collected on one individual/unit over
@@ -445,6 +449,7 @@ To decide between fixed or random effects you can run a Hausman test where the
 null hypothesis is that the preferred model is random effects vs. the alternative the
 fixed effects (see Green, 2008, chapter 9). It basically tests whether the unique
 errors $\epsilon_i$ are correlated with the regressors, the null hypothesis is they are not.
+\newpage
 \section{Data}
 Our paper analyzes the cause of the wrong relationship between unemployment rate and GDP growth as shown by the previous work.
 The previous paper used the cross sectional data for 74 countries and did a regression for GDP growth as the dependent variable and fertility rate, unemployment rate, gross savings rate and GINI coefficient as the independent variables. The data was collected for the year 2007.\\
@@ -464,7 +469,7 @@ relationship.  By obtaining data from the World Bank, sample size of 74 countrie
 savings rate, unemployment, and fertility to measure economic growth (change in GDP per capita for the
 period 2007-2012). In addition to the Gini coefficient, the analysis showed that gross savings rate,
 unemployment, and fertility all possessed positive impacts on economic growth for the time period of 2007 to 2012.
-
+\newpage
 \section{Results}
 
 The results of the Linear Regression Model :
@@ -610,7 +615,8 @@ Total no. : 7\\
 Number of countries with negative coefficient of unemployment rate: 5/7\\
 
 The unemployment rate shows expected results, for the devloping countries, a clear majority of the countries show a negative relationship between the unemployment rate and GDP growth rate as expected b the OKUN's Law. However no clear relationship is clear for the unemployment rate and GDP growth in the developed ones.\\
-These resuts can be attributed to the fact that the developed countries have a grant allocation for the unemployed population whereas the developing countries have no such grant available. Therefore, the unemployment has no such clear relationship with the GDP growth in the developed ones. But  for the case of he developing countries, the relationship is clear, in accordance with the OKUN's Law due to the fact that the developing countries have nothing to offer to he unemployed population and the uemployed population proves to be detrimental to the economy. The unemployed population generally indulges in the criminal activities and various other anti-societal activities and causes the overall economy to suffer.\\
+These resuts can be attributed to the fact that the developed countries have a grant allocation for the unemployed population whereas the developing countries have no such grant available. Therefore, the unemployment has no such clear relationship with the GDP growth in the developed ones. But  for the case of he developing countries, the relationship is clear, in accordance with the OKUN's Law due to the fact that the developing countries have nothing to offer to he unemployed population and the uemployed population proves to be detrimental to the economy. The unemployed population generally indulges in the criminal activities and various other anti-societal activities and causes the overall economy to suffer.
+\newpage
 \section{Panel Data Regression}
 Since the data available with us contains both time series and cross-sectional data, we can apply Panel Data Regression for the Panel Data avaialble. The Panel Data Regression is carried out for the time series data for 14 years from 2002 to 2016 for 11 countries.
 \subsection{With Pooled OLS Estimator}
@@ -641,53 +647,106 @@ So, Fixed Effects turns out to be better than Pooled Estimator
 Since, one of the model is inconsistent, therefore Random Effects turns out to be better than Pooled Estimator.\\
 So, fixed effects Model is the best model for panel data regression.\\
 The coefficient for the unemployment in the Fixed Effects Model is -0.76523, negative as expected from the Okun's law.
+\newpage
+\section{Conclusion}
+The work concludes that the reason for the opposed relationship between unemployment rate and GDP growth in the previous work done by .... was due to the strong Multicollinearity present in the data. The unemployment rate, fertility rate and GINI coefficient were strongly correlated. On producing subset regression of the initial model by removing the above regressors one by one, we concluded that the model with fertility rate removed produces the one with the highest value of $R^2$ which is indicative of the fact that fertility rate is the best explained by the rest of the regressors and thus needed to be removed.\\
+After removing the fertility rate, we found that the relationship between unemployment rate and GDP growth differs with the economy from a developed to a developing one. So, upon analyzing we found that the unemployment has a clear negative reationship with economic growth in developing countries and not a clear relationship in developed ones. This can be attributed to the fact that the developed countries have an allocated grant for the unemployed population whereas the developing countries have no such grant which leads to the above relationship.\\
+For the relationship between fertility rate and GDP growth, we removed GINI coefficient which was the 2nd most correlated regressor. Upon performing the regression again for the 11 countries, we found that the developed countries have a NEGATIVE relationship between fertility rate and GDP growth rate. It was expected as the previous literature points out towards the fact that the Fertility Rate increases in the initial stage of the economic growth and then becomes stagnant as the economy reaches a stable stage and gradually begins to decrease with the country falling in the category of the developed ones. However for the developing countries, there is no clear relationship between the fertility rate and the GDP growth rate.\\
+After performing the panel data regression for cross sectional data for 11 countries and the time series available for the years 2002-2016, we found that the fixed effects and random effects model were both better than pooled OLS estimator by LM Hausman Test an fixed effects to be better than random effetcs. The fixed effects model had Coefficient for unemp -0.7652 and p-value of  1.11e-05.\\
+Due to the missing data, we had to go with just countries. But the different relationship between fertilty rate and economic growth for developed and developing countries is an intersting topic for further research. Better data and accountability, especially in regards to the Gini
+coefficient, would also help for further research and analysis.\newpage
 
- 
- 
-\\\\\\\\\===============================================================
+\section{References}
+References are as follows :\vfill
+1] ‘Economic Growth & Income Inequality: A revised cross-sectional econometric analysis of the global impact of income inequality on economic growth around the world’ was published in Econometric Analysis U.G. Research by A. Hunter, W. Martinez, & U. Patel of Georgia Institute of Technology by S. Dhongde.\vfill
+2] INTRODUCTION TO LINEAR
+REGRESSION ANALYSIS, DOUGLAS C. MONTGOMERY, DOUGLAS C. MONTGOMERY, G. GEOFFREY VINING\vfill
+3] Instrumental Variables Estimation, Econometrics, Shalabh, IIT Kanpur\vfill
+4] ECONOMETRIC ANALYSIS, SEVENTH EDITION, William H. Greene\vfill
+5] Econometric Methods, $4^{th}$ Edition, Jack Johnston, Jack DiNardo\vfill
+6] Panel Data Analysis
+fixed and Random Effects
+sing Stata, Oscar Torres-Reyna, Princeton.\vfill
+7] World Bank 2002-2016. Total Fertility Rate (births per woman) (The World Bank).\vfill
+8] World Bank 2002-2016. GDP per capita (current US \$) (The World Bank). \vfill
+9] World Bank 2002-2016. GINI Index (World Bank estimate) (The World Bank).\vfill
+10] World Bank 2002-2016. Gross Savings (\% of GDP) (The World Bank).\vfill
+11] World Bank 2002-2016. Total Unemployment (\% of total labor force) (The World Bank).\vfill
 
 \clearpage
 
 \appendix
 
-\section{An Appendix}
+\section{Name of the countries}
 \label{sec:app1}
 
-Here's an appendix with an equation. Note that equation numbering continues where it left off in the main body and that the JFE wants the word ``Appendix'' to appear before the letter in the appendix title. This is all handled in \texttt{jfe.sty}.
-\begin{equation}
-  E = mc^2.
-\label{eq:eqA}
-\end{equation}
+The 11 countries are as follows :\\
+1. Antigua and Barbuda\\
+2. Bermuda\\
+3. Cuba\\
+4. East Asia & Pacific (excluding high income)\\
+5. Gibraltar\\
+6. Croatia\\
+7. Kiribati\\
+8. Maldives\\
+9. Philippines\\
+10. Palau\\
+11. Pacific island small states\\
 
-\section{Another Appendix}
+\section{Regression Results}
 \label{sec:app2}
+\subsection{Initial Model Results}
+The results of the initial model,
+\begin{center}
+    $ Gdpchange = \beta_0 + \beta_1GINI + \beta_2Gsavs + \beta_3Unemp + \beta_4Fer + \epsilon$
+\end{center}
+for 11 countries are as follows :
+\begin{center}
+    \includegraphics{initial.png}
+\end{center}
 
-Here's another appendix with an equation.
-\begin{equation}
-  E = mc^2.
-\end{equation}
-Note that this is quite similar to Equation~\eqref{eq:eqA} in Appendix~\ref{sec:app1}.
+\section{Variance Covarinace Matrix for 11 Countries}
+The variance covariance matrix can be used to identify the correlation between regressors. The data for 11 countries is as follows :
+\begin{center}
+    \includegraphics{v1.png}\\
+\includegraphics{v2.png}
+\end{center}
+\newpage
 
+\section{Subset Regression}
+\subsection{Model excluding Unemployment}
+The results of the model with the unemployment rate dropped from the initial data is as follows :
+\begin{center}
+    \includegraphics{u.png}
+\end{center}
+\subsection{Model excluding GINI}
+The results of the model with the unemployment rate dropped from the initial data is as follows :
+\begin{center}
+    \includegraphics{G.png}
+\end{center}
+\subsection{Model excluding Fertility Rate}
+The results of the model with the fertility rate dropped from the initial data is as follows :
+\begin{center}
+    \includegraphics{f.png}
+\end{center}
 \clearpage
-
-% Bibliography.
-
-\bibliographystyle{jfe}
-\bibliography{RHSbib}
-
-% Figures and tables, showing how to structure captions
-\clearpage
-
-\ 
-\vfill
-\begin{figure}[!htb]
-\centerline{
-%\includegraphics[width=7in]{Figure1}
-\rule{7in}{3in} % added by Karol Kozioł
-}
-  \caption{Structure of model. Capital can be invested in a bank sector and an equity sector. An intermediary has the expertise to reallocate capital between the sectors and to monitor bank capital against bank crashes.} \label{fig:0}
-\end{figure}
-\vfill
-\ 
+\newpage
+\section{Panel Data Regression}
+\subsection{Pooled OLS Estimator}
+\begin{center}
+    \includegraphics{p.png}
+\end{center}
+\subsection{Between Estimator}
+\begin{center}
+    \includegraphics{b.png}
+\end{center}
+\subsection{Within of Fixed Effects Estimator}
+\begin{center}
+    \includegraphics{fw.png}
+\end{center}
+\subsection{Random Effects Estimator}
+\begin{center}
+    \includegraphics{r.png}
+\end{center}
 
 \end{document}
